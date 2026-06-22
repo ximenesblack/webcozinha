@@ -1,0 +1,155 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+body{
+    min-height: 100vh;
+    background:
+    linear-gradient(
+        135deg,
+        #004A8D 30%,
+        #ad2a02 70%,
+        #F7941D 100%
+    );
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.container{
+    width: 100%;
+    max-width: 450px;
+}
+
+.logo{
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.logo img{
+    width: 220px;
+    filter: drop-shadow(0 5px 10px rgba(0,0,0,.2));
+}
+
+.logo img{
+    width: 100%;
+    max-width: 250px;
+}
+
+.card{
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0,0,0,.15);
+    animation: subir .8s ease;
+}
+
+.card h1{
+    color: #004A8D;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.card p{
+    text-align: center;
+    color: #666;
+    margin-bottom: 25px;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+}
+
+label{
+    color: #004A8D;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+input{
+    width: 100%;
+    padding: 14px;
+    margin-bottom: 15px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    font-size: 15px;
+    transition: .3s;
+}
+
+input:focus{
+    outline: none;
+    border-color: #F7941D;
+    box-shadow: 0 0 10px rgba(247,148,29,.25);
+}
+
+button{
+    background: #004A8D;
+    color: white;
+    border: none;
+    padding: 14px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: .3s;
+}
+
+button:hover{
+    background: #F7941D;
+    transform: translateY(-2px);
+}
+
+.links{
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.links a{
+    color: #004A8D;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.links a:hover{
+    color: #F7941D;
+}
+
+.mensagem{
+    text-align: center;
+    margin-top: 15px;
+    font-weight: bold;
+    color: green;
+}
+
+@keyframes subir{
+    from{
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to{
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media(max-width: 500px){
+
+    .card{
+        padding: 25px;
+    }
+
+    .links{
+        flex-direction: column;
+        text-align: center;
+    }
+
+}

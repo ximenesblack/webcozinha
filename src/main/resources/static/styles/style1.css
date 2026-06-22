@@ -1,0 +1,447 @@
+body {
+    background: linear-gradient(135deg, #1e467a 20%, #9e3d1d 65%, #c77228 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
+}
+
+.glass-card {
+    background: rgba(255, 255, 255, 0.94);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 16px !important;
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-up {
+    animation: fadeUp 0.5s ease-out forwards;
+}
+
+.material-symbols-outlined {
+    vertical-align: middle;
+}
+
+/* Checkbox estilizado redondo leve */
+input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    border: 2px solid #cbd5e1;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+     /* --- ESTILOS GERAIS E VARIÁVEIS DE CORES --- */
+ :root {
+     --primary: #003365;
+     --secondary: #8c4f00;
+     --tertiary: #ba1a1a;
+     --text-main: #191c1e;
+     --text-muted: #424750;
+     --bg-badge: #fff3e0;
+     --bg-return-icon: #ffebee;
+ }
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background: linear-gradient(135deg, #1e467a 20%, #9e3d1d 65%, #c77228 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
+    color: var(--text-main);
+    -webkit-font-smoothing: antialiased;
+}
+
+/* --- TOPNAVBAR --- */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 64px;
+    background-color: #ffffff;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    z-index: 50;
+}
+
+.nav-container {
+    max-width: 1440px;
+    margin: 0 auto;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 32px;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+nav {
+    display: flex;
+    gap: 24px;
+}
+
+nav a {
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text-muted);
+    transition: color 0.2s;
+    padding-bottom: 4px;
+}
+
+nav a:hover {
+    color: var(--primary);
+}
+
+nav a.active {
+    color: var(--primary);
+    font-weight: 700;
+    border-b: 2px solid var(--primary);
+    border-bottom: 2px solid var(--primary);
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.icon-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--primary);
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    border-radius: 50%;
+}
+
+.icon-btn:hover {
+    background-color: #e6e8ea;
+}
+
+.profile-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--primary);
+}
+
+/* --- LAYOUT PRINCIPAL --- */
+main {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 96px 32px 48px 32px;
+    min-height: 100vh;
+}
+
+.hero {
+    margin-bottom: 24px;
+    color: #ffffff;
+}
+
+.hero h1 {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 4px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.15);
+}
+
+.hero p {
+    font-size: 18px;
+    opacity: 0.9;
+}
+
+/* --- GRIDS --- */
+.grid-2 {
+    display: grid;
+    grid-template-columns: repeat(12, 100%);
+    gap: 24px;
+    margin-bottom: 24px;
+}
+
+@media (min-width: 768px) {
+    .grid-2 { grid-template-columns: repeat(12, 1fr); }
+    .col-6 { grid-column: span 6; }
+    .col-8 { grid-column: span 8; }
+    .col-4 { grid-column: span 4; }
+    .col-12 { grid-column: span 12; }
+}
+
+@media (max-width: 767px) {
+    .col-6, .col-8, .col-4, .col-12 { grid-column: span 12; }
+}
+
+/* --- CARDS COM EFEITO DE VIDRO (GLASS) --- */
+.glass-card {
+    background: rgba(255, 255, 255, 0.94);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.card-sm {
+    padding: 16px;
+    display: flex;
+    align-items: center;
+}
+
+/* --- ELEMENTOS INTERNOS DOS CARDS --- */
+.card-icon-box {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    margin-right: 16px;
+}
+
+.bg-blue-box { background-color: #d5e3ff; color: var(--primary); }
+.bg-red-box { background-color: var(--bg-return-icon); color: var(--tertiary); }
+
+.card-sm-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--primary);
+}
+.card-sm-title.dark { color: var(--text-main); }
+
+.card-sm-subtitle {
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+.flex-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.text-btn {
+    background: none;
+    border: none;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--primary);
+    cursor: pointer;
+}
+.text-btn:hover { text-decoration: underline; }
+
+/* --- SEÇÕES E TABELAS --- */
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.section-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-add {
+    background-color: var(--primary);
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 700;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    transition: background-color 0.2s;
+}
+.btn-add:hover { background-color: #F7941D; }
+
+.badge-inline {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--secondary);
+    background-color: var(--bg-badge);
+    padding: 4px 8px;
+    border-radius: 4px;
+    margin-top: 4px;
+    display: inline-block;
+}
+
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+th {
+    text-align: left;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #e6e8ea;
+}
+
+td {
+    padding: 12px 0;
+    border-bottom: 1px solid #e6e8ea;
+}
+
+tr:hover td {
+    background-color: #F0F7FF;
+}
+
+.text-right { text-align: right; }
+.text-center { text-align: center; }
+.font-bold { font-weight: 700; }
+.text-primary-color { color: var(--primary); }
+.text-muted-color { color: var(--text-muted); }
+
+/* --- DETALHES DA RECEITA --- */
+.recipe-meta {
+    display: flex;
+    gap: 16px;
+    font-size: 12px;
+    color: var(--text-muted);
+    margin: 8px 0 16px 0;
+}
+
+.recipe-meta span {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.recipe-subtitle {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--primary);
+    margin-bottom: 8px;
+}
+
+.ingredients-list {
+    list-style: none;
+    font-size: 12px;
+    margin-bottom: 16px;
+}
+
+.ingredients-list li {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 0;
+    border-bottom: 1px dashed #cbd5e1;
+}
+
+.preparation-box {
+    border-left: 4px solid var(--primary);
+    padding-left: 8px;
+}
+
+.preparation-box p {
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1.6;
+}
+
+/* --- CHECKBOX CUSTOMIZADO --- */
+input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    accent-color: var(--primary);
+}
+
+/* --- FOOTER --- */
+footer {
+    background-color: #ffffff;
+    border-top: 1px solid #e6e8ea;
+    margin-top: 48px;
+}
+
+.footer-container {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 16px 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+@media (min-width: 768px) {
+    .footer-container { flex-direction: row; }
+}
+
+.footer-copy {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--primary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.footer-links {
+    display: flex;
+    gap: 24px;
+    font-size: 12px;
+}
+
+.footer-links a {
+    text-decoration: none;
+    color: var(--text-muted);
+    transition: color 0.2s;
+}
+
+.footer-links a:hover { color: var(--primary); }
+
+/* --- ANIMAÇÃO CASCATA --- */
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-up {
+    opacity: 0;
+    animation: fadeUp 0.5s ease-out forwards;
+}

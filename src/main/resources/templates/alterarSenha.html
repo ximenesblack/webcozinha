@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${tituloPagina}"></title>
+    <link rel="stylesheet" th:href="@{/styles/style.css}">
+</head>
+<body>
+<div class="container">
+
+    <div class="logo">
+        <img th:src="@{/img/senac-logo.png}" alt="Logo Senac">
+    </div>
+
+    <div class="card">
+
+        <h1 th:text="${tituloPagina}"></h1>
+        <p th:text="${subTituloPagina}"></p>
+
+        <!-- Mensagem de erro -->
+        <div class="erro" th:if="${erro}" th:text="${erro}"></div>
+
+        <!-- Mensagem de sucesso -->
+        <div class="sucesso" th:if="${sucesso}" th:text="${sucesso}"></div>
+
+        <form th:action="@{/alterar-senha}" th:object="${usuarioForm}" method="post">
+
+            <label for="email">E-mail</label>
+            <input
+                    type="email"
+                    id="email"
+                    th:field="*{email}"
+                    placeholder="Digite seu e-mail"
+                    required
+            >
+
+            <label for="senha">Nova Senha</label>
+            <input
+                    type="password"
+                    id="senha"
+                    th:field="*{senha}"
+                    placeholder="Digite a nova senha"
+                    required
+            >
+
+            <label for="confirmarSenha">Confirmar Nova Senha</label>
+            <input
+                    type="password"
+                    id="confirmarSenha"
+                    th:field="*{confirmarSenha}"
+                    placeholder="Confirme a nova senha"
+                    required
+            >
+
+            <button type="submit">Alterar Senha</button>
+
+        </form>
+
+        <div class="links">
+            <a th:href="@{/login}">Voltar para Login</a>
+        </div>
+    </div>
+</div>
+<script th:src="@{/scripts/script.js}"></script>
+</body>
+</html>

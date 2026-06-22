@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>CulinaMaster Pro - Painel do Instrutor</title>
+  <link rel="stylesheet" th:href="@{/styles/style1.css}">
+</head>
+<body>
+
+<header>
+  <div class="nav-container">
+    <div class="logo"> <img th:src="@{/img/senac-logo.png}" width="70"  height="60" alt="Logo Senac"></div>
+    <nav>
+      <a class="active" th:href="@{/home}">Home</a>
+      <a th:href="@{/aulas}">Minhas Aulas</a>
+      <a th:href="@{/configuracoes}">Configurações</a>
+    </nav>
+    <div class="header-actions">
+      <button class="icon-btn">🔔</button>
+      <img alt="Perfil" class="profile-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCvRz_nQX1p1-4tbfuYodOdatMEcmTIn-aYklNEGzBR7VUPXtAMvfe0oPcm14Q5c6eS6Qldr1vjmmQZAuPGfvYjs86nBy8eiQoAnoR_y-HEqJcZiMGbKh3pNYapfH1-D56tZnxaYiwZk2b35fcgX1H5bUSwfwg_3ar0vbafN7E2DEoM2gIz5900x5ylXO2r_7d4e5aKICrfUMivyzlCrjJxHYOGUgwg4iXUCUhY5Q5IxhSPw54CI01W0PccN5cCx-YoJVwiHo_Qv8g"/>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="hero animate-fade-up">
+    <h1>Bem-vindo, Chef.</h1>
+    <p>Sua cozinha está pronta para o serviço de hoje.</p>
+  </section>
+
+  <div class="grid-2">
+    <div class="col-6 glass-card card-sm animate-fade-up">
+      <div class="card-icon-box bg-blue-box">🍳</div>
+      <div>
+        <h3 class="card-sm-title">3 Receitas</h3>
+        <p class="card-sm-subtitle">Para preparar hoje</p>
+      </div>
+    </div>
+    <div class="col-6 glass-card card-sm animate-fade-up">
+      <div class="flex-between">
+        <div style="display: flex; align-items: center;">
+          <div class="card-icon-box bg-red-box">↩</div>
+          <div>
+            <h3 class="card-sm-title dark">Itens para devolver</h3>
+            <p class="card-sm-subtitle">Gerenciar estoque de saída</p>
+          </div>
+        </div>
+        <button class="text-btn">Gerenciar Devoluções</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid-2">
+    <div class="col-8 glass-card animate-fade-up">
+      <div class="section-header">
+        <h3 class="section-title">📅 Agenda de Aulas</h3>
+        <button class="text-btn">Ver Tudo</button>
+      </div>
+      <div class="table-responsive">
+        <table>
+          <thead>
+          <tr>
+            <th>DATA</th>
+            <th>AULA</th>
+            <th>INGREDIENTES NECESSÁRIOS</th>
+            <th class="text-right">QTD TOTAL</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td class="text-muted-color">25 Out</td>
+            <td class="font-bold text-primary-color">Risoto de Cogumelos</td>
+            <td class="text-muted-color">Arroz Arbóreo, Caldo, Cogumelos</td>
+            <td class="text-right font-bold text-primary-color">5kg</td>
+          </tr>
+          <tr>
+            <td class="text-muted-color">26 Out</td>
+            <td class="font-bold text-primary-color">Massas Artesanais</td>
+            <td class="text-muted-color">Farinha 00, Ovos Caipiras, Sêmola</td>
+            <td class="text-right font-bold text-primary-color">12kg</td>
+          </tr>
+          <tr>
+            <td class="text-muted-color">27 Out</td>
+            <td class="font-bold text-primary-color">Culinária Francesa</td>
+            <td class="text-muted-color">Manteiga, Chalotas, Vinho Branco</td>
+            <td class="text-right font-bold text-primary-color">3kg</td>
+          </tr>
+          <tr>
+            <td class="text-muted-color">28 Out</td>
+            <td class="font-bold text-primary-color">Confeitaria Básica</td>
+            <td class="text-muted-color">Chocolate 70%, Creme de Leite</td>
+            <td class="text-right font-bold text-primary-color">8kg</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="col-4 glass-card animate-fade-up">
+      <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; color: var(--text-muted);">
+        🍽 Receita do Dia
+      </div>
+      <h2 style="font-size: 24px; font-weight: 700; color: var(--primary); margin: 4px 0;">Risoto de Cogumelos</h2>
+      <div class="recipe-meta">
+        <span>⏱ 45 min</span>
+        <span>📊 Média</span>
+      </div>
+
+      <div>
+        <h4 class="recipe-subtitle">Ingredientes</h4>
+        <ul class="ingredients-list">
+          <li><span>Arroz Arbóreo</span> <span class="font-bold text-primary-color">500g</span></li>
+          <li><span>Cogumelos Variados</span> <span class="font-bold text-primary-color">300g</span></li>
+          <li><span>Caldo de Legumes</span> <span class="font-bold text-primary-color">1.5L</span></li>
+          <li><span>Vinho Branco</span> <span class="font-bold text-primary-color">150ml</span></li>
+          <li><span>Parmesão</span> <span class="font-bold text-primary-color">100g</span></li>
+        </ul>
+      </div>
+
+      <div class="preparation-box">
+        <h4 class="recipe-subtitle">Preparo</h4>
+        <p>Refogar cogumelos, selar o arroz, adicionar caldo aos poucos mexendo sempre, finalizar com queijo e manteiga para cremosidade.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid-2">
+    <div class="col-6 glass-card animate-fade-up">
+      <div class="section-header">
+        <div style="display: flex; gap: 12px; align-items: flex-start;">
+          <span style="font-size: 20px;">📋</span>
+          <div>
+            <h3 class="card-sm-title">Checklist de Ingredientes do Dia</h3>
+            <span class="badge-inline">Risoto de Cogumelos</span>
+          </div>
+        </div>
+        <button class="btn-add">➕ Adicionar Item</button>
+      </div>
+
+      <table>
+        <thead>
+        <tr>
+          <th>INGREDIENTE</th>
+          <th class="text-center">QUANTIDADE</th>
+          <th class="text-right">STATUS</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr><td>Arroz Arbóreo</td><td class="text-center font-bold text-primary-color">500g</td><td class="text-right"><input type="checkbox"></td></tr>
+        <tr><td>Cogumelos Variados</td><td class="text-center font-bold text-primary-color">300g</td><td class="text-right"><input type="checkbox"></td></tr>
+        <tr><td>Caldo de Legumes</td><td class="text-center font-bold text-primary-color">1.5L</td><td class="text-right"><input type="checkbox"></td></tr>
+        <tr><td>Vinho Branco</td><td class="text-center font-bold text-primary-color">150ml</td><td class="text-right"><input type="checkbox"></td></tr>
+        <tr><td>Parmesão</td><td class="text-center font-bold text-primary-color">100g</td><td class="text-right"><input type="checkbox"></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="col-6 glass-card animate-fade-up">
+      <div class="section-header">
+        <div style="display: flex; gap: 12px; align-items: center;">
+          <span style="font-size: 20px;">🥣</span>
+          <h3 class="card-sm-title">Checklist de Utensílios</h3>
+        </div>
+        <button class="btn-add">➕ Adicionar Item</button>
+      </div>
+
+      <table>
+        <thead>
+        <tr>
+          <th>UTENSÍLIO</th>
+          <th class="text-right">STATUS</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr><td>Frigideira Grande</td><td class="text-right"><input type="checkbox"></td></tr>
+        <tr><td>Espátula de Silicone</td><td class="text-right"><input type="checkbox"></td></tr>
+        <tr><td>Ralador de Queijo</td><td class="text-right"><input type="checkbox"></td></tr>
+        <tr><td>Panela de Fundo Grosso</td><td class="text-right"><input type="checkbox"></td></tr>
+        <tr><td>Faca do Chef</td><td class="text-right"><input type="checkbox"></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-container">
+    <span class="footer-copy">© 2026 Senac - Sistemas de Gastronomia Profissional</span>
+    <div class="footer-links">
+      <a href="#">Política de Privacidade</a>
+      <a href="#">Termos de Serviço</a>
+      <a href="#">Suporte</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const elements = document.querySelectorAll('.animate-fade-up');
+    elements.forEach((element, index) => {
+      element.style.animationDelay = `${index * 0.05}s`;
+    });
+  });
+</script>
+</body>
+</html>
