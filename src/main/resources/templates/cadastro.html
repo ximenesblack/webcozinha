@@ -19,7 +19,7 @@
         <!-- Mensagem de erro -->
         <div class="erro" th:if="${erro}" th:text="${erro}"></div>
 
-        <form th:action="@{/cadastro}" th:object="${usuarioForm}" method="post">
+        <form th:action="@{/cadastro}" th:object="${UsuarioForm}" method="post">
 
             <label for="nome">Nome Completo</label>
             <input

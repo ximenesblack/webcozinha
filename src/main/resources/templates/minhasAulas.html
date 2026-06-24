@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CulinaMaster Pro - Agenda Mensal</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" th:href="@{/styles/style2.css}">
+</head>
+<body>
+
+<header class="top-navbar">
+    <div class="navbar-container">
+        <div class="nav-left">
+            <div class="logo"> <img th:src="@{/img/senac-logo.png}" width="70"  height="60" alt="Logo Senac"></div>
+        </div>
+        <nav class="nav-menu">
+            <a class="nav-link" href="/home">Home</a>
+            <a class="nav-link active" href="/aulas">Minhas Aulas</a>
+            <a class="nav-link" href="/configuraçao">Configurações</a>
+        </nav>
+        <div class="nav-right">
+            <button class="icon-btn">
+                <span class="material-symbols-outlined">notifications</span>
+            </button>
+            <div class="profile-wrapper">
+                <img alt="Perfil do Instrutor" class="profile-img"
+                     th:src="${instrutor != null && instrutor.fotoUrl != null} ? ${instrutor.fotoUrl} : 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80'">
+            </div>
+        </div>
+    </div>
+</header>
+
+<main class="main-container">
+    <section class="hero-section animate-fade-up">
+        <h1>Organização Mensal</h1>
+        <p>Visualize e gerencie suas aulas e turmas do mês de Dezembro.</p>
+    </section>
+
+    <div class="dashboard-grid animate-fade-up">
+
+        <div class="calendar-card glass-card">
+            <div class="calendar-select-wrapper">
+                <select id="filtroAmbiente" class="custom-select">
+                    <option value="cozinha1">Cozinha 1</option>
+                    <option value="cozinha2">Cozinha 2</option>
+                    <option value="experimental">Cozinha Experimental</option>
+                </select>
+            </div>
+
+            <div class="calendar-header">
+                <h2 class="calendar-title">
+                    <span class="material-symbols-outlined icon-secondary">calendar_month</span>
+                    Dezembro 2024
+                </h2>
+                <div class="calendar-arrows">
+                    <button class="arrow-btn"><span class="material-symbols-outlined">chevron_left</span></button>
+                    <button class="arrow-btn"><span class="material-symbols-outlined">chevron_right</span></button>
+                </div>
+            </div>
+
+            <div class="weekdays-grid">
+                <div>D</div><div>S</div><div>T</div><div>Q</div><div>Q</div><div>S</div><div>S</div>
+            </div>
+
+            <div class="days-grid">
+                <div class="calendar-day day-muted">1</div>
+                <div class="calendar-day">2</div>
+                <div class="calendar-day">3</div>
+                <div class="calendar-day">4</div>
+                <div class="calendar-day day-mine">5</div>
+                <div class="calendar-day">6</div>
+                <div class="calendar-day">7</div>
+                <div class="calendar-day day-muted">8</div>
+                <div class="calendar-day">9</div>
+                <div class="calendar-day">10</div>
+                <div class="calendar-day day-others">11</div>
+                <div class="calendar-day">12</div>
+                <div class="calendar-day">13</div>
+                <div class="calendar-day">14</div>
+                <div class="calendar-day day-muted">15</div>
+                <div class="calendar-day">16</div>
+                <div class="calendar-day day-mine">17</div>
+                <div class="calendar-day">18</div>
+                <div class="calendar-day">19</div>
+                <div class="calendar-day">20</div>
+                <div class="calendar-day">21</div>
+                <div class="calendar-day day-muted">22</div>
+                <div class="calendar-day">23</div>
+                <div class="calendar-day">24</div>
+                <div class="calendar-day">25</div>
+                <div class="calendar-day day-others">26</div>
+                <div class="calendar-day">27</div>
+                <div class="calendar-day">28</div>
+                <div class="calendar-day day-muted">29</div>
+                <div class="calendar-day">30</div>
+                <div class="calendar-day">31</div>
+                <div class="calendar-day empty"></div><div class="calendar-day empty"></div><div class="calendar-day empty"></div><div class="calendar-day empty"></div>
+            </div>
+
+            <div class="calendar-legend">
+                <div class="legend-item">
+                    <span class="dot dot-primary"></span>
+                    <span>Minhas Aulas Confirmadas</span>
+                </div>
+                <div class="legend-item">
+                    <span class="dot dot-secondary"></span>
+                    <span>Aulas de Outros Professores</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="table-card glass-card">
+            <div class="table-card-header">
+                <h3 class="table-title">
+                    <span class="material-symbols-outlined icon-secondary">list_alt</span>
+                    Lista de Aulas do Mês
+                </h3>
+                <button class="btn-primary">
+                    <span class="material-symbols-outlined">add</span>
+                    Nova Aula
+                </button>
+            </div>
+
+            <div class="table-responsive">
+                <table class="custom-table">
+                    <thead>
+                    <tr>
+                        <th style="width: 15%;">Data</th>
+                        <th style="width: 45%;">Nome da Aula</th>
+                        <th style="width: 15%;">Status</th>
+                        <th style="width: 15%;">Alunos</th>
+                        <th style="width: 10%; text-align: center;">Ação</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="aula : ${aulas}" th:if="${not #lists.isEmpty(aulas)}" class="table-row">
+                        <td class="date-cell rounded-left" th:text="${aula.data}">05 Dez</td>
+                        <td class="name-cell" th:text="${aula.nome}">Culinária Italiana: Massas Frescas</td>
+                        <td>
+                                    <span th:class="${aula.status == 'Confirmada'} ? 'badge badge-confirmed' : 'badge badge-pending'"
+                                          th:text="${aula.status}">Confirmada</span>
+                        </td>
+                        <td class="students-cell" th:text="${aula.alunos}">24/25</td>
+                        <td class="action-cell rounded-right">
+                            <a th:href="@{/aulas/detalhes/{id}(id=${aula.id})}" class="action-btn">
+                                <span class="material-symbols-outlined">visibility</span>
+                            </a>
+                        </td>
+                    </tr>
+
+                    <th:block th:if="${#lists.isEmpty(aulas)}">
+                        <tr class="table-row">
+                            <td class="date-cell rounded-left">05 Dez</td>
+                            <td class="name-cell">Culinária Italiana: Massas Frescas</td>
+                            <td><span class="badge badge-confirmed">Confirmada</span></td>
+                            <td class="students-cell">24/25</td>
+                            <td class="action-cell rounded-right"><button class="action-btn"><span class="material-symbols-outlined">visibility</span></button></td>
+                        </tr>
+                        <tr class="table-row">
+                            <td class="date-cell rounded-left">A definir</td>
+                            <td class="name-cell">Confeitaria Avançada: Macarons</td>
+                            <td><span class="badge badge-pending">Pendente</span></td>
+                            <td class="students-cell">—</td>
+                            <td class="action-cell rounded-right"><button class="action-btn"><span class="material-symbols-outlined">visibility</span></button></td>
+                            end tr>
+                    </th:block>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer class="main-footer">
+    <div class="footer-container">
+        <span class="footer-copy">© 2026 CULINAMASTER PRO - SISTEMAS DE GASTRONOMIA PROFISSIONAL</span>
+        <div class="footer-links">
+            <a href="#">Política de Privacidade</a>
+            <a href="#">Termos de Serviço</a>
+            <a href="#">Suporte</a>
+        </div>
+    </div>
+</footer>
+
+<script th:src="@{/scripts/Aulas.js}"></script>
+</body>
+</html>

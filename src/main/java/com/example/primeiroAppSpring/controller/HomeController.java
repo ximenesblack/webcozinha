@@ -13,4 +13,8 @@ public class HomeController {
     public String exibirTela(){
         return "home";
     }
+    @GetMapping("/aulas")
+    public String exibirTelaAulas(){
+        return "minhasAulas";
+    }
 }

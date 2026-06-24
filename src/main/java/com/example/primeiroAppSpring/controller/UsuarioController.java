@@ -35,7 +35,7 @@ public class UsuarioController {
     }
 
     // --- LOGIN ---
-    @GetMapping("/Login")
+    @GetMapping("/login")
     public String exibirLogin(Model form){
         form.addAttribute("UsuarioForm", new UsuarioForm());
         form.addAttribute("TituloPagina", "Bem-vindo");
@@ -44,7 +44,7 @@ public class UsuarioController {
     }
 
     // AQUI: Processa a tentativa de login (Mudei de Get para Post)
-    @PostMapping("/Login")
+    @PostMapping("/login")
     public String processarLogin(@ModelAttribute UsuarioForm form , Model model) {
         if(form.getEmail().endsWith("@df.senac.br") || form.getEmail().endsWith("@edu.df.senac.br")){
             return "redirect:/home";
@@ -73,6 +73,6 @@ public class UsuarioController {
         // Aqui dentro você faria a lógica para salvar no banco de dados futuramente
         model.addAttribute("Senha alterada com sucesso: " + form.getEmail()); // Exemplo de teste
 
-        return "redirect:/Login"; // Redireciona para a página de login após cadastrar
+        return "redirect:/login"; // Redireciona para a página de login após cadastrar
     }
 }

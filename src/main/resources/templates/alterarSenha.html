@@ -24,7 +24,7 @@
         <!-- Mensagem de sucesso -->
         <div class="sucesso" th:if="${sucesso}" th:text="${sucesso}"></div>
 
-        <form th:action="@{/alterar-senha}" th:object="${usuarioForm}" method="post">
+        <form th:action="@{/alterar-senha}" th:object="${UsuarioForm}" method="post">
 
             <label for="email">E-mail</label>
             <input
