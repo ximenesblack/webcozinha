@@ -3,35 +3,25 @@ package com.example.primeiroAppSpring.model;
 import jakarta.persistence.*;
 
 @Entity
-
-@Table(name= "usuarios")
+@Table(name = "usuarios")
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     @Column(nullable = false, length = 100)
     private String nome;
-    @Column(nullable = false,length = 100, unique = true)
+    @Column(nullable = false, length = 100, unique = true)
     private String email;
-    @Column(nullable = false,length = 255)
+    @Column(nullable = false, length = 255)
     private String senha;
 
-    public Usuario() {
+    protected Usuario() {
     }
 
-    protected Usuario(long id, String nome, String email, String senha) {
-        this.id = id;
+    public Usuario(String nome, String email, String senha) {
         this.nome = nome;
         this.email = email;
         this.senha = senha;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public String getNome() {

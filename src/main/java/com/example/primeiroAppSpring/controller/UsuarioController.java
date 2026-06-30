@@ -1,6 +1,8 @@
 package com.example.primeiroAppSpring.controller;
 
 import com.example.primeiroAppSpring.model.UsuarioForm;
+import com.example.primeiroAppSpring.service.UsuarioService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,35 +13,41 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/")
 public class UsuarioController {
+    @Autowired
+    private final UsuarioService usuarioService;
+
+    public UsuarioController(UsuarioService usuarioService){
+        this.usuarioService = usuarioService;
+    }
+
 
     // --- CADASTRO ---
     @GetMapping("/cadastro")
     public String exibirCadastro(Model form){
         form.addAttribute("UsuarioForm", new UsuarioForm());
-        form.addAttribute("TituloPagina", "Cadastro");
-        form.addAttribute("SubTituloPagina", "Sistema de Gerenciamento de Estoque");
+        form.addAttribute("tituloPagina", "Cadastro");
+        form.addAttribute("subTituloPagina", "Sistema de Gerenciamento de Estoque");
         return "cadastro";
     }
 
     // AQUI: Processa o envio do formulário de cadastro
     @PostMapping("/cadastro")
     public String processarCadastro(@ModelAttribute UsuarioForm form ,Model model ) {
-        if(!form.getSenha().equals(form.getConfirmarSenha())){
-            model.addAttribute("erro", "Erro, as senhas não conferem");
-            return "cadastro";
-        }
-        // Aqui dentro você faria a lógica para salvar no banco de dados futuramente
-        IO.println("Usuário cadastrado: " + form.getNome()); // Exemplo de teste
-
-        return "redirect:/Login"; // Redireciona para a página de login após cadastrar
+       String erro = usuarioService.cadastrar(form);
+       if(erro != null){
+           model.addAttribute("erro",erro);
+           model.addAttribute("usuarioForm",form);
+           return "cadastro";
+       }
+        return "redirect:/login"; // Redireciona para a página de login após cadastrar
     }
 
     // --- LOGIN ---
     @GetMapping("/login")
     public String exibirLogin(Model form){
         form.addAttribute("UsuarioForm", new UsuarioForm());
-        form.addAttribute("TituloPagina", "Bem-vindo");
-        form.addAttribute("SubTituloPagina", "Sistema de Gerenciamento de Estoque de Cozinha");
+        form.addAttribute("tituloPagina", "Bem-vindo");
+        form.addAttribute("subTituloPagina", "Sistema de Gerenciamento de Estoque de Cozinha");
         return "login";
     }
 
@@ -58,8 +66,8 @@ public class UsuarioController {
     @GetMapping("/AlterarSenha")
     public String exibirAlterarSenha(Model form){
         form.addAttribute("UsuarioForm", new UsuarioForm());
-        form.addAttribute("TituloPagina", "Alterar Senha");
-        form.addAttribute("SubTituloPagina", "Informe seus dados para redefinir sua senha.");
+        form.addAttribute("tituloPagina", "Alterar Senha");
+        form.addAttribute("subTituloPagina", "Informe seus dados para redefinir sua senha.");
         return "alterarSenha";
     }
 
