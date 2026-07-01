@@ -1,5 +1,6 @@
 package com.example.primeiroAppSpring.controller;
 
+import com.example.primeiroAppSpring.model.Usuario;
 import com.example.primeiroAppSpring.model.UsuarioForm;
 import com.example.primeiroAppSpring.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,16 +55,16 @@ public class UsuarioController {
     // AQUI: Processa a tentativa de login (Mudei de Get para Post)
     @PostMapping("/login")
     public String processarLogin(@ModelAttribute UsuarioForm form , Model model) {
-        if(form.getEmail().endsWith("@df.senac.br") || form.getEmail().endsWith("@edu.df.senac.br")){
-            return "redirect:/home";
+        Usuario usuario = usuarioService.autenticar(form.getEmail(), form.getSenha());
+        if(usuario == null){
+            model.addAttribute("erro","E-mail ou senha incorreto");
+            return "login";
         }
-        model.addAttribute("erro","Email ou senha invalidos ");
-
-        return "login"; // Exemplo: manda para o cadastro se der certo
+        return "redirect:/home"; // Exemplo: manda para o cadastro se der certo
     }
 
     // --- ALTERAR SENHA ---
-    @GetMapping("/AlterarSenha")
+    @GetMapping("/alterarSenha")
     public String exibirAlterarSenha(Model form){
         form.addAttribute("UsuarioForm", new UsuarioForm());
         form.addAttribute("tituloPagina", "Alterar Senha");
@@ -72,14 +73,15 @@ public class UsuarioController {
     }
 
     // AQUI: Processa a alteração de senha
-    @PostMapping("/AlterarSenha")
-    public String processarAlrterarSenha(@ModelAttribute UsuarioForm form ,Model model ) {
-        if(!form.getSenha().equals(form.getConfirmarSenha())){
-            model.addAttribute("erro", "Erro, as senhas não conferem");
-            return "AlterarSenha";
-        }
-        // Aqui dentro você faria a lógica para salvar no banco de dados futuramente
-        model.addAttribute("Senha alterada com sucesso: " + form.getEmail()); // Exemplo de teste
+    @PostMapping("/alterarSenha")
+    public String processarAlterarSenha(@ModelAttribute UsuarioForm form, Model model) {
+        String erro = usuarioService.alterarSenha(form);
+
+        if (erro != null) {
+            model.addAttribute("erro", "Senhas não conferem ou E-mail não cadastrado");
+            return "alterarSenha";
+
+        }// Exemplo de teste
 
         return "redirect:/login"; // Redireciona para a página de login após cadastrar
     }
